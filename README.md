@@ -2,11 +2,7 @@
 
 This is an egg incubator that uses an ESP8266 microcontroller and various sensors to maintain a controlled environment for hatching eggs.
 
-
-
-https://github.com/VISHNUPRIYANR1812/essolve-Semiconductor-Online-Internship-Programme-on-Embedded-IOT/assets/134359531/60d55230-b619-49e9-9d5e-b8406f24b54b
-
-
+https://github.com/VISHNUPRIYANR1812/essolve-Semiconductor-Online-Internship-Programme-on-Embedded-IOT/assets/134359531/de42c4b3-4fb6-4ca2-931d-6a518bb8bca1
 
 ## Required Hardware
 
