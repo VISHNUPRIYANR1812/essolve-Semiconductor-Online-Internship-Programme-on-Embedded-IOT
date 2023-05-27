@@ -35,6 +35,8 @@ https://github.com/VISHNUPRIYANR1812/essolve-Semiconductor-Online-Internship-Pro
 
 <center>The Blynk app is used to control the egg incubator. The app has several widgets that allow the user to monitor the temperature, humidity, and gas level inside the incubator, as well as control the light bulb and servo motor. The Blynk app requires a Blynk auth token, which must be added to the code.</center>
 
+---
+
 
 
 ![3f0fd989-3a99-4048-bbfa-daac725b7d2e](https://github.com/VISHNUPRIYANR1812/essolve-Semiconductor-Online-Internship-Programme-on-Embedded-IOT/assets/134359531/ff30995b-7dc1-41a0-8c57-b540426a5a1b)
