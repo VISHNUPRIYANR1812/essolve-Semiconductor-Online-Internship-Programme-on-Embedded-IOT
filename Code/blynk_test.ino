@@ -1,15 +1,18 @@
-#define BLYNK_TEMPLATE_ID "TMPLlZnaRmJx"
-#define BLYNK_TEMPLATE_NAME "EGG INCUBATOR"
-#define BLYNK_AUTH_TOKEN "yI9VSl5uvccP4SteqfWUhQ46bifWhpQb"
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+LiquidCrystal_I2C lcd(0x3F,20,4);
+#define BLYNK_TEMPLATE_ID "*******"
+#define BLYNK_TEMPLATE_NAME "******"
+#define BLYNK_AUTH_TOKEN "*******"
 #include <BlynkSimpleEsp8266.h>
 #include <ESP8266WiFi.h>
 #include "DHT.h"
 #define DHTTYPE DHT11
 #include <Servo.h>
 Servo myservo;  
-DHT dht(D7, DHTTYPE);
-const char* ssid = "VISHNUPRIYAN";
-const char* password = "VISHNU@2002";
+DHT dht(D5, DHTTYPE);
+const char* ssid = "*****";
+const char* password = "*****";
 float t = 0;
 int po = 90, h, i = 0, a, sy_c, sv_c, sv_a;
 WidgetLED led1(V8);
@@ -17,13 +20,36 @@ BlynkTimer timer;
 
 void setup() 
 {
+  lcd.init();                 
+  lcd.backlight();
+  lcd.setCursor(0, 0);
+  lcd.print("ESPRESSIF-ESP");
+  lcd.setCursor(0, 1);
+  lcd.print("SYSTEM BOOT");
+  WiFi.begin(ssid, password);
+  int loadingDelay = 300; 
+  char animationChars[] = {'|', '/', '-', '\\'};
+  int animationCharCount = sizeof(animationChars) / sizeof(animationChars[0]);
+  int animationIndex = 0;
+  while (WiFi.status() != WL_CONNECTED) 
+  {
+    lcd.setCursor(17, 3);
+    lcd.print(animationChars[animationIndex]);
+    animationIndex = (animationIndex + 1) % animationCharCount;
+    delay(loadingDelay);
+  }
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Connected to");
+  lcd.setCursor(0, 1);
+  lcd.print("Wi-Fi network");
   Serial.begin(9600);
   WiFi.begin(ssid, password);
   Blynk.begin(BLYNK_AUTH_TOKEN, ssid, password);
   dht.begin();
-  myservo.attach(D2);  
-  pinMode(D0, OUTPUT);
-  pinMode(D1, OUTPUT);
+  myservo.attach(D4);  
+  pinMode(D6, OUTPUT);
+  pinMode(D7, OUTPUT);
   myservo.write(po);
   pinMode(A0, INPUT);
 }
@@ -53,16 +79,26 @@ void callsensor()
   h = dht.readHumidity();
   t = dht.readTemperature();
 
+  lcd.clear();  // Clear the LCD display
+  lcd.setCursor(0, 0);
+  lcd.print("Temp: ");
+  lcd.print(t);
+  lcd.print(" C");
+
+  lcd.setCursor(0, 1);
+  lcd.print("Humidity: ");
+  lcd.print(h);
+  lcd.print(" %");
   if (t >= 37.5)
   {
-    digitalWrite(D1, HIGH);
-    digitalWrite(D0, HIGH);
+    digitalWrite(D6, HIGH);
+    digitalWrite(D7, HIGH);
     led1.off();
   }
   else if(t <=35.5)
   { 
-    digitalWrite(D0, LOW);
-    digitalWrite(D1, LOW);
+    digitalWrite(D6, LOW);
+    digitalWrite(D7, LOW);
     led1.on();
   }
   Blynk.virtualWrite(V1, h);
