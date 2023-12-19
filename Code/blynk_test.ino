@@ -10,7 +10,7 @@ LiquidCrystal_I2C lcd(0x3F,20,4);
 #define DHTTYPE DHT11
 #include <Servo.h>
 Servo myservo;  
-DHT dht(D5, DHTTYPE);
+DHT dht(D8, DHTTYPE);
 const char* ssid = "*****";
 const char* password = "*****";
 float t = 0;
