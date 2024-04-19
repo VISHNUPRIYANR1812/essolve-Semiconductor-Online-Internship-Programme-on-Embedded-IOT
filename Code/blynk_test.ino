@@ -23,7 +23,7 @@ void setup()
   lcd.init();                 
   lcd.backlight();
   lcd.setCursor(0, 0);
-  lcd.print("ESPRESSIF-ESP");
+  lcd.print("ESPRESSIF-NMCU");
   lcd.setCursor(0, 1);
   lcd.print("SYSTEM BOOT");
   WiFi.begin(ssid, password);
